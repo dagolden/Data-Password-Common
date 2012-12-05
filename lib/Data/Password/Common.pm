@@ -1,13 +1,28 @@
-use 5.008001;
+use v5.10;
 use strict;
 use warnings;
 
 package Data::Password::Common;
-# ABSTRACT: No abstract given for Data::Password::Common
+# ABSTRACT: Check a password against a list of common passwords
 # VERSION
 
 # Dependencies
+use File::ShareDir;
+use IO::File;
+use Search::Dict;
 use autodie 2.00;
+
+use Sub::Exporter -setup => { exports => ['check'] };
+
+my $list_path = File::ShareDir::dist_file( "Data-Password-Common", "common.txt" );
+
+my $list_handle = IO::File->new($list_path);
+
+sub check {
+  return unless @_;
+  my $password = shift;
+  return -1 != look $list_handle, $password;
+}
 
 1;
 
