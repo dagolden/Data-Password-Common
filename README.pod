@@ -64,7 +64,7 @@ L<Data::Password::BasicCheck>
 =head2 Bugs / Feature Requests
 
 Please report any bugs or feature requests through the issue tracker
-at L<https://rt.cpan.org/Public/Dist/Display.html?Name=Data-Password-Common>.
+at L<https://github.com//data-password-common/issues>.
 You will be notified automatically of any progress on your issue.
 
 =head2 Source Code
