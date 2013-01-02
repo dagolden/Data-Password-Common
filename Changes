@@ -6,6 +6,10 @@ Revision history for Data-Password-Common
 
   - Allows specifying a custom password list
 
+  [DOCUMENTED]
+
+  - Clarified that the password list is actually over 620,000
+
 0.001     2012-12-05 12:58:56 America/New_York
 
   - First release
