@@ -63,13 +63,13 @@
    "provides" : {
       "Data::Password::Common" : {
          "file" : "lib/Data/Password/Common.pm",
-         "version" : "0.001"
+         "version" : "0.002"
       }
    },
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com//data-password-common/issues"
+         "web" : "https://github.com/dagolden/data-password-common/issues"
       },
       "homepage" : "https://metacpan.org/release/Data-Password-Common",
       "repository" : {
@@ -78,6 +78,6 @@
          "web" : "https://github.com/dagolden/data-password-common"
       }
    },
-   "version" : "0.001"
+   "version" : "0.002"
 }
 

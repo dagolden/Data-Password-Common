@@ -31,7 +31,7 @@ sub build_finder {
 
 1;
 
-=for Pod::Coverage method_names_here
+=for Pod::Coverage build_finder
 
 =head1 SYNOPSIS
 
@@ -49,11 +49,12 @@ sub build_finder {
 
 =head1 DESCRIPTION
 
-This module installs a list of 62 thousand common passwords and provides
+This module installs a list of over 620,000 common passwords and provides
 a function to check a string against the list.
 
-The password list from InfoSecDaily
-at L<http://www.isdpodcast.com/resources/62k-common-passwords/>
+The password list is taken from InfoSecDaily at
+L<http://www.isdpodcast.com/resources/62k-common-passwords/>. (They claim their
+list is over 62K, but they must have misread their C<wc> output.)
 
 =head1 USAGE
 
@@ -72,14 +73,22 @@ during import:
 
   use Data::Password::Common found => { list => "/usr/share/dict/words" };
 
-The file must be lexicographically sorted.
+The file must be sorted.
 
 =head1 SEE ALSO
+
+=head2 Password checkers
 
 =for :list
 * L<Data::Password>
 * L<Data::Password::Entropy>
 * L<Data::Password::BasicCheck>
+
+=head2 Lists of common passwords
+
+=for :list
+* L<InfoSecDaily|http://www.isdpodcast.com/resources/62k-common-passwords/>
+* L<Skull Security|http://www.skullsecurity.org/wiki/index.php/Passwords>
 
 =cut
 
