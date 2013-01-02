@@ -2,6 +2,8 @@ Revision history for Data-Password-Common
 
 {{$NEXT}}
 
+0.002     2013-01-02 12:57:01 America/New_York
+
   [ADDED]
 
   - Allows specifying a custom password list
