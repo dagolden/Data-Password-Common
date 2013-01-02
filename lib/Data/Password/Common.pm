@@ -7,25 +7,35 @@ package Data::Password::Common;
 # VERSION
 
 # Dependencies
+use Carp qw/croak/;
 use File::ShareDir;
 use IO::File;
 use Search::Dict;
 use autodie 2.00;
 
-use Sub::Exporter -setup => { exports => ['found'] };
+use Sub::Exporter -setup => { exports => [ 'found' => \&build_finder ] };
 
-my $list_path = File::ShareDir::dist_file( "Data-Password-Common", "common.txt" )
-  or die "Can't locate common passwords file";
+sub build_finder {
+  my ( $class, $name, $arg, $col ) = @_;
+  my $list_handle = $arg->{handle};
 
-my $list_handle = IO::File->new($list_path);
+  unless ($list_handle) {
+    my $list_path = File::ShareDir::dist_file( "Data-Password-Common", "common.txt" )
+      or die "Can't locate common passwords file";
+    $list_handle = IO::File->new($list_path);
+  }
 
-sub found {
-  return unless @_;
-  my $password = shift;
+  croak "build_finder() requires a handle"
+    unless ref($list_handle) eq 'GLOB'
+    or $list_handle->isa("IO::Seekable");
 
-  look $list_handle, $password;
-  chomp( my $found = <$list_handle> );
-  return $found eq $password;
+  return sub {
+    return unless @_;
+    my $password = shift;
+    look $list_handle, $password;
+    chomp( my $found = <$list_handle> );
+    return $found eq $password;
+  };
 }
 
 1;
