@@ -7,7 +7,6 @@ package Data::Password::Common;
 # VERSION
 
 # Dependencies
-use Carp qw/croak/;
 use File::ShareDir;
 use IO::File;
 use Search::Dict;
@@ -17,17 +16,9 @@ use Sub::Exporter -setup => { exports => [ 'found' => \&build_finder ] };
 
 sub build_finder {
   my ( $class, $name, $arg, $col ) = @_;
-  my $list_handle = $arg->{handle};
-
-  unless ($list_handle) {
-    my $list_path = File::ShareDir::dist_file( "Data-Password-Common", "common.txt" )
-      or die "Can't locate common passwords file";
-    $list_handle = IO::File->new($list_path);
-  }
-
-  croak "build_finder() requires a handle"
-    unless ref($list_handle) eq 'GLOB'
-    or $list_handle->isa("IO::Seekable");
+  my $list_path = $arg->{list}
+    || File::ShareDir::dist_file( "Data-Password-Common", "common.txt" );
+  my $list_handle = IO::File->new($list_path);
 
   return sub {
     return unless @_;
@@ -53,6 +44,9 @@ sub build_finder {
   # import with aliasing
   use Data::Password::Common found => { -as => "found_common" };
 
+  # custom common password list
+  use Data::Password::Common found => { list => "/usr/share/dict/words" };
+
 =head1 DESCRIPTION
 
 This module installs a list of 62 thousand common passwords and provides
@@ -70,6 +64,15 @@ Functions are provided via L<Sub::Exporter>.  Nothing is exported by default.
   found($password);
 
 Returns true if the password is in the common passwords list.
+
+=head1 CUSTOMIZING
+
+You may choose an alternate password list to check by passing a C<list> parameter
+during import:
+
+  use Data::Password::Common found => { list => "/usr/share/dict/words" };
+
+The file must be lexicographically sorted.
 
 =head1 SEE ALSO
 
