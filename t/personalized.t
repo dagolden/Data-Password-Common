@@ -11,7 +11,7 @@ use Data::Password::Common 'found',
 ok( found("password"),   "'password' is in built-in list" );
 ok( myfound("password"), "'password' is in custom list" );
 ok( found("stupid1"),    "'stupid1' is in built-in list" );
-ok( !myfound("stupid1"), "'stupid1' is in custom list" );
+ok( !myfound("stupid1"), "'stupid1' is not in custom list" );
 
 done_testing;
 # COPYRIGHT
