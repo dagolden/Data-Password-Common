@@ -15,18 +15,18 @@ use autodie 2.00;
 use Sub::Exporter -setup => { exports => [ 'found' => \&build_finder ] };
 
 sub build_finder {
-  my ( $class, $name, $arg, $col ) = @_;
-  my $list_path = $arg->{list}
-    || File::ShareDir::dist_file( "Data-Password-Common", "common.txt" );
-  my $list_handle = IO::File->new($list_path, "<:utf8");
+    my ( $class, $name, $arg, $col ) = @_;
+    my $list_path = $arg->{list}
+      || File::ShareDir::dist_file( "Data-Password-Common", "common.txt" );
+    my $list_handle = IO::File->new( $list_path, "<:utf8" );
 
-  return sub {
-    return unless @_;
-    my $password = shift;
-    look $list_handle, $password;
-    chomp( my $found = <$list_handle> );
-    return $found eq $password;
-  };
+    return sub {
+        return unless @_;
+        my $password = shift;
+        look $list_handle, $password;
+        chomp( my $found = <$list_handle> );
+        return $found eq $password;
+    };
 }
 
 1;

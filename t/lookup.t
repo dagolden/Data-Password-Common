@@ -3,9 +3,8 @@ use strict;
 use warnings;
 use utf8;
 use Test::More 0.96;
-use Test::File::ShareDir -share => {
-  -dist => { 'Data-Password-Common' => 'share' }
-};
+use Test::File::ShareDir -share =>
+  { -dist => { 'Data-Password-Common' => 'share' } };
 
 my $builder = Test::More->builder;
 binmode $builder->output,         ":encoding(utf8)";
@@ -14,10 +13,10 @@ binmode $builder->todo_output,    ":encoding(utf8)";
 
 use Data::Password::Common qw/found/;
 
-ok( found("password"), "'password' is a common passwo'rd" );
-ok( found("trustno1"), "'trustno1' is a common password" );
-ok( found('!"£$%^'), q['!"£$%^' is a common password] );
-ok( ! found("alkdjf1=2"), "'alkdjf1=2' is not a common password" );
+ok( found("password"),   "'password' is a common passwo'rd" );
+ok( found("trustno1"),   "'trustno1' is a common password" );
+ok( found('!"£$%^'),    q['!"£$%^' is a common password] );
+ok( !found("alkdjf1=2"), "'alkdjf1=2' is not a common password" );
 
 done_testing;
 # COPYRIGHT
