@@ -2,17 +2,21 @@ Revision history for Data-Password-Common
 
 {{$NEXT}}
 
+    [FIXED]
+
+    - Deduplicated password list and re-encoded it as UTF-8
+
 0.002     2013-01-02 12:57:01 America/New_York
 
-  [ADDED]
+    [ADDED]
 
-  - Allows specifying a custom password list
+    - Allows specifying a custom password list
 
-  [DOCUMENTED]
+    [DOCUMENTED]
 
-  - Clarified that the password list is actually over 620,000
+    - Clarified that the password list is actually over 620,000
 
 0.001     2012-12-05 12:58:56 America/New_York
 
-  - First release
+    - First release
 

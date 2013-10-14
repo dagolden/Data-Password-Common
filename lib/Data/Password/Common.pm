@@ -18,7 +18,7 @@ sub build_finder {
   my ( $class, $name, $arg, $col ) = @_;
   my $list_path = $arg->{list}
     || File::ShareDir::dist_file( "Data-Password-Common", "common.txt" );
-  my $list_handle = IO::File->new($list_path);
+  my $list_handle = IO::File->new($list_path, "<:utf8");
 
   return sub {
     return unless @_;
@@ -49,7 +49,7 @@ sub build_finder {
 
 =head1 DESCRIPTION
 
-This module installs a list of over 620,000 common passwords and provides
+This module installs a list of over 557,000 common passwords and provides
 a function to check a string against the list.
 
 The password list is taken from InfoSecDaily at
