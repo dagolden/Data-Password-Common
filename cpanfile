@@ -16,6 +16,11 @@ on 'test' => sub {
   requires "utf8" => "0";
 };
 
+on 'test' => sub {
+  recommends "CPAN::Meta" => "0";
+  recommends "CPAN::Meta::Requirements" => "0";
+};
+
 on 'configure' => sub {
   requires "ExtUtils::MakeMaker" => "6.17";
   requires "File::ShareDir::Install" => "0.03";
